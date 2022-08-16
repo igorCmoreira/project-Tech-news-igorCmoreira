@@ -70,11 +70,12 @@ def get_tech_news(amount):
         for url in urls:
             link_news.append(url)
 
-    current_page = scrape_next_page_link(content)
+        current_page = scrape_next_page_link(content)
 
-    for news in link_news:
+    for news in link_news[:amount]:
         fetch_news = fetch(news)
         new_news = scrape_noticia(fetch_news)
         all_news.append(new_news)
 
     create_news(all_news)
+    return all_news
