@@ -1,5 +1,13 @@
 from tech_news.analyzer.ratings import top_5_categories, top_5_news
 import sys
+from tech_news.analyzer.search_engine import (
+    search_by_category,
+    search_by_date,
+    search_by_tag,
+    search_by_title,
+)
+
+from tech_news.scraper import get_tech_news
 
 
 def text_init():
@@ -16,9 +24,19 @@ def text_init():
     )
 
 
+def slected_option(selected, entry):
+    options = {
+        "0": get_tech_news,
+        "1": search_by_title,
+        "2": search_by_date,
+        "3": search_by_tag,
+        "4": search_by_category,
+    }
+    print(options[selected](entry))
+
+
 # Requisito 12
 def analyzer_menu():
-
     options = {
         "0": "Digite quantas notícias serão buscadas:",
         "1": "Digite o título:",
@@ -27,7 +45,7 @@ def analyzer_menu():
         "4": "Digite a categoria:",
         "5": lambda: top_5_news(),
         "6": lambda: top_5_categories(),
-        "7": lambda: "Encerrando script"
+        "7": lambda: "Encerrando script",
     }
 
     try:
@@ -40,6 +58,10 @@ def analyzer_menu():
 
         if int(x) > 4:
             print(options[x]())
-
+        else:
+            print(options[x])
+            y = input()
+            slected_option(x, y)
+        
     except Exception:
         return print("Opção inválida", file=sys.stderr)
