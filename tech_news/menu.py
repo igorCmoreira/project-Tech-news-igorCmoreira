@@ -62,6 +62,6 @@ def analyzer_menu():
             print(options[x])
             y = input()
             slected_option(x, y)
-        
+
     except Exception:
         return print("Opção inválida", file=sys.stderr)
