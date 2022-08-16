@@ -18,6 +18,7 @@ def text_init():
 
 # Requisito 12
 def analyzer_menu():
+
     options = {
         "0": "Digite quantas notícias serão buscadas:",
         "1": "Digite o título:",
